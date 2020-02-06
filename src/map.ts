@@ -44,6 +44,23 @@ export class NoteMap<T extends any> {
         return this._instanceMap.size;
     }
 
+    // Basics
+    public getAllKeys(): string[] {
+
+        return [...this._supportMap.keys()];
+    }
+
+    public getAllIdentifiers(): string[] {
+
+        return [...this._reverseMap.keys()];
+    }
+
+    public getAllInstances(): T[] {
+
+        return [...this._instanceMap.values()];
+    }
+
+    // Mutations
     public setAndGetIdentifer(key: string, value: T): string {
 
         const identifier: string = randomUnique();
