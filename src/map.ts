@@ -8,7 +8,7 @@ import { randomUnique } from "@sudoo/random";
 
 export class NoteMap<T extends any> {
 
-    public static create<T extends any = any>() {
+    public static create<T extends any>() {
 
         return new NoteMap<T>();
     }
@@ -25,6 +25,15 @@ export class NoteMap<T extends any> {
         this._reverseMap = new Map<string, string>();
         this._supportMap = new Map<string, string[]>();
         this._instanceMap = new Map<string, T>();
+    }
+
+    /**
+     * Return the size of keys
+     * 
+     * @returns The size of keys
+     */
+    public get length(): number {
+        return this._supportMap.size;
     }
 
     public setAndGetIdentifer(key: string, value: T): string {
