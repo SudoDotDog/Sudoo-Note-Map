@@ -64,8 +64,9 @@ export class NoteMap<T extends any> {
 
         // SupportMap
         if (this._supportMap.has(key)) {
-            const list: string[] = this._supportMap.get(key);
-            this._supportMap.set(key, [...list, identifier]);
+            const list: string[] | undefined = this._supportMap.get(key);
+            const fixedList: string[] = list ?? [];
+            this._supportMap.set(key, [...fixedList, identifier]);
         } else {
             this._supportMap.set(key, [identifier]);
         }
