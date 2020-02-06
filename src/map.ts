@@ -35,6 +35,14 @@ export class NoteMap<T extends any> {
     public get length(): number {
         return this._supportMap.size;
     }
+    /**
+     * Return the size of instances
+     * 
+     * @returns The size of instances
+     */
+    public get size(): number {
+        return this._instanceMap.size;
+    }
 
     public setAndGetIdentifer(key: string, value: T): string {
 
@@ -44,12 +52,23 @@ export class NoteMap<T extends any> {
         return identifier;
     }
 
-    public getByIdentifier(identifier: string): T | undefined {
+    public getKeyByIdentifier(identifier: string): string | undefined {
+
+        return this._getKey(identifier);
+    }
+
+    public getInstanceByIdentifier(identifier: string): T | undefined {
 
         return this._getInstance(identifier);
     }
 
-    public getAllByKey(key: string): T[] {
+    public getAllIdentifiersByKey(key: string): string[] {
+
+        const identifers: string[] = this._getIdentifiers(key);
+        return identifers;
+    }
+
+    public getAllInstancesByKey(key: string): T[] {
 
         const identifers: string[] = this._getIdentifiers(key);
         return this._getInstances(identifers);
@@ -86,6 +105,12 @@ export class NoteMap<T extends any> {
             succeed,
             failed,
         };
+    }
+
+    // ReverseMap
+    private _getKey(identifier: string): string | undefined {
+
+        return this._reverseMap.get(identifier);
     }
 
     // SupportMap & ReverseMap
@@ -125,7 +150,12 @@ export class NoteMap<T extends any> {
         if (!identifierList) {
             return false;
         }
-        this._supportMap.set(key, identifierList.filter((each: string) => each !== identifier));
+        const newIdentifierList: string[] = identifierList.filter((each: string) => each !== identifier);
+        if (newIdentifierList.length === 0) {
+            this._supportMap.delete(key);
+        } else {
+            this._supportMap.set(key, newIdentifierList);
+        }
         return true;
     }
 
