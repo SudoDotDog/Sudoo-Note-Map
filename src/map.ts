@@ -35,7 +35,12 @@ export class NoteMap<T extends any> {
         return identifier;
     }
 
-    public getInstances(key: string): T[] {
+    public getByIdentifier(identifier: string): T | undefined {
+
+        return this._getInstance(identifier);
+    }
+
+    public getAllByKey(key: string): T[] {
 
         const identifers: string[] = this._getIdentifiers(key);
         return this._getInstances(identifers);
@@ -48,6 +53,30 @@ export class NoteMap<T extends any> {
             return false;
         }
         return this._removeInstance(identifier);
+    }
+
+    public removeAllByKey(key: string): {
+        readonly succeed: number;
+        readonly failed: number;
+    } {
+
+        const identifiers: string[] = this._getIdentifiers(key);
+
+        let succeed: number = 0;
+        let failed: number = 0;
+        for (const identifier of identifiers) {
+            const result: boolean = this.removeByIdentifier(identifier);
+            if (result) {
+                succeed++;
+            } else {
+                failed++;
+            }
+        }
+
+        return {
+            succeed,
+            failed,
+        };
     }
 
     // SupportMap & ReverseMap
@@ -92,6 +121,11 @@ export class NoteMap<T extends any> {
     }
 
     // InstanceMap
+    private _getInstance(identifer: string): T | undefined {
+
+        return this._instanceMap.get(identifer);
+    }
+
     private _getInstances(identifers: string[]): T[] {
 
         const result: T[] = [];
