@@ -78,6 +78,13 @@ export class NoteMap<T extends any> {
     }
 
     // Mutations
+    public setWithIdentifier(key: string, identifier: string, value: T): this {
+
+        this._addSupport(key, identifier);
+        this._addInstance(identifier, value);
+        return this;
+    }
+
     public setAndGetIdentifer(key: string, value: T): string {
 
         const identifier: string = randomUnique();
