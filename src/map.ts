@@ -66,6 +66,11 @@ export class NoteMap<T extends any> {
         return identifiers.length === 0;
     }
 
+    public identifierExists(identifier: string): boolean {
+
+        return this._instanceMap.has(identifier);
+    }
+
     public countKey(key: string): number {
 
         const identifiers: string[] = this._getIdentifiers(key);
