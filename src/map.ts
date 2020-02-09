@@ -60,6 +60,12 @@ export class NoteMap<T extends any> {
         return [...this._instanceMap.values()];
     }
 
+    public count(key: string): number {
+
+        const identifiers: string[] = this.getAllIdentifiersByKey(key);
+        return identifiers.length;
+    }
+
     // Mutations
     public setAndGetIdentifer(key: string, value: T): string {
 
