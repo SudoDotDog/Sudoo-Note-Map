@@ -60,9 +60,15 @@ export class NoteMap<T extends any> {
         return [...this._instanceMap.values()];
     }
 
-    public count(key: string): number {
+    public keyExists(key: string): boolean {
 
-        const identifiers: string[] = this.getAllIdentifiersByKey(key);
+        const identifiers: string[] = this._getIdentifiers(key);
+        return identifiers.length === 0;
+    }
+
+    public countKey(key: string): number {
+
+        const identifiers: string[] = this._getIdentifiers(key);
         return identifiers.length;
     }
 
