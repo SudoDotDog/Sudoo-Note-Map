@@ -4,7 +4,7 @@
  * @description Map
  */
 
-import { randomUnique } from "@sudoo/random";
+import { generateIdentifier } from "./util";
 
 export class NoteMap<T extends any> {
 
@@ -87,7 +87,7 @@ export class NoteMap<T extends any> {
 
     public setAndGetIdentifer(key: string, value: T): string {
 
-        const identifier: string = randomUnique();
+        const identifier: string = generateIdentifier();
         this._addSupport(key, identifier);
         this._addInstance(identifier, value);
         return identifier;
