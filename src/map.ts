@@ -131,7 +131,7 @@ export class NoteMap<T extends any> {
         for (const key of keys) {
             const identifiers: string[] = this.getAllIdentifiersByKey(key);
             for (const identifier of identifiers) {
-                const instance: T = this.getInstanceByIdentifier(identifier);
+                const instance: T | undefined = this.getInstanceByIdentifier(identifier);
                 if (instance === value) {
                     count++;
                     this.removeByIdentifier(identifier);

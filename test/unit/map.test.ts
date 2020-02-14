@@ -193,4 +193,31 @@ describe('Given {NoteMap} Class', (): void => {
         expect(identifiers).to.be.includes(identifier1);
         expect(identifiers).to.be.includes(identifier2);
     });
+
+    it('should be able to remove by value', (): void => {
+
+        const key1: string = chance.string();
+        const key2: string = chance.string();
+        const value1: string = chance.string();
+        const value2: string = chance.string();
+        const value3: string = chance.string();
+
+        const map: NoteMap<string> = NoteMap.create();
+
+        const identifier1: string = map.setAndGetIdentifer(key1, value1);
+        const identifier2: string = map.setAndGetIdentifer(key2, value2);
+        const identifier3: string = map.setAndGetIdentifer(key2, value3);
+        const identifier4: string = map.setAndGetIdentifer(key1, value2);
+
+        // tslint:disable-next-line: no-magic-numbers
+        expect(map).to.be.lengthOf(2);
+        // tslint:disable-next-line: no-magic-numbers
+        expect(map.size).to.be.equal(4);
+
+        const count: number = map.removeByValue(value2);
+
+        expect(count).to.be.equal(2);
+        expect(map).to.be.lengthOf(2);
+        expect(map.size).to.be.equal(2);
+    });
 });
