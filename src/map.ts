@@ -124,6 +124,23 @@ export class NoteMap<T extends any> {
         return this._removeInstance(identifier);
     }
 
+    public removeByValue(value: T): number {
+
+        let count: number = 0;
+        const keys: string[] = this.getAllKeys();
+        for (const key of keys) {
+            const identifiers: string[] = this.getAllIdentifiersByKey(key);
+            for (const identifier of identifiers) {
+                const instance: T = this.getInstanceByIdentifier(identifier);
+                if (instance === value) {
+                    count++;
+                    this.removeByIdentifier(identifier);
+                }
+            }
+        }
+        return count;
+    }
+
     public removeAllByKey(key: string): {
         readonly succeed: number;
         readonly failed: number;
