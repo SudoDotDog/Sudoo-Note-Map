@@ -8,7 +8,7 @@ import { generateIdentifier } from "./util";
 
 export class NoteMap<T extends any> {
 
-    public static create<T extends any>() {
+    public static create<T extends any>(): NoteMap<T> {
 
         return new NoteMap<T>();
     }

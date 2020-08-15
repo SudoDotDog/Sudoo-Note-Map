@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-unused-vars */
 /**
  * @author WMXPY
  * @namespace Note_Map
@@ -24,7 +25,7 @@ describe('Given {NoteMap} Class', (): void => {
 
         expect(map).to.be.lengthOf(1);
         expect(map.size).to.be.equal(1);
-        // tslint:disable-next-line: no-unused-expression
+        // eslint-disable-next-line @typescript-eslint/no-unused-expressions, @typescript-eslint/unbound-method
         expect(identifier).to.be.string;
     });
 
