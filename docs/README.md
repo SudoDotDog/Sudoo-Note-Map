@@ -14,3 +14,11 @@ npm install @sudoo/node-map --save
 # Or
 yarn add @sudoo/node-map
 ```
+
+## Usage
+
+```ts
+import { NoteMap } from "@sudoo/node-map";
+
+const noteMap: NoteMap<string> = NoteMap.create();
+```
