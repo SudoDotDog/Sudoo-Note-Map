@@ -6,3 +6,11 @@
 [![downloads](https://img.shields.io/npm/dm/@sudoo/note-map.svg)](https://www.npmjs.com/package/@sudoo/note-map)
 
 :rooster: Cross check ready note map
+
+## Install
+
+```sh
+npm install @sudoo/node-map --save
+# Or
+yarn add @sudoo/node-map
+```
