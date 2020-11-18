@@ -20,5 +20,7 @@ yarn add @sudoo/node-map
 ```ts
 import { NoteMap } from "@sudoo/node-map";
 
-const noteMap: NoteMap<string> = NoteMap.create();
+const map: NoteMap<string> = NoteMap.create();
+const identifier: string = map.setAndGetIdentifer(key, value);
+const result: string | undefined = map.getInstanceByIdentifier(identifier);
 ```
